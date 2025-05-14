@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:13
+    container_name: cmpcdb_dev
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-cmpcuser}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-cmpcpass123}
+      POSTGRES_DB: ${DB_NAME:-cmpcdb}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-cmpcuser} -d ${DB_NAME:-cmpcdb}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: cmpcbackend_dev
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: ${DB_PORT:-5432}
+      DB_USERNAME: ${DB_USERNAME:-cmpcuser}
+      DB_PASSWORD: ${DB_PASSWORD:-cmpcpass123}
+      DB_NAME: ${DB_NAME:-cmpcdb}
+      JWT_SECRET: ${JWT_SECRET:-TuSuperSecretoJWT123!}
+      NODE_ENV: ${NODE_ENV:-development}
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: npm run start:dev
+
+volumes:
+  postgres_data:
