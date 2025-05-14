@@ -18,7 +18,7 @@
 
 ### Pasos Rápidos
 
-git clone https://github.com/tu-repositorio/CMPC.git
+git clone https://github.com/Eh1na/CMPC.git
 - cd CMPC
 - docker-compose up -d --build
 
