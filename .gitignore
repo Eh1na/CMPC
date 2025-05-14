@@ -1,8 +1,4 @@
-# Archivos de entorno 
-.env 
-*.env* 
-!.env.template 
- 
+
 # Dependencias 
 node_modules/ 
  
