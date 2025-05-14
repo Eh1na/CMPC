@@ -48,3 +48,6 @@ CMPC/
 
 > **Nota**: Esta estructura sigue el estándar para aplicaciones Dockerizadas con frontend y backend separados.
 
+> **Nota 2**: usuario admin, contraseña AdminSecure123!
+
+
