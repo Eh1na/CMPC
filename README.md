@@ -50,4 +50,6 @@ CMPC/
 
 > **Nota 2**: usuario admin, contraseña AdminSecure123!
 
+> **Nota 3**: para acceder a documentacion swagger, visita la url http://localhost:3000/api/docs del contenedor backend http://localhost:3001/books
 
+> **Nota 4**: para acceder a la aplicacion web, visita la url http://localhost:3001/
